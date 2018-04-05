@@ -2,11 +2,18 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const VENDOR_LIBS = [
+    'jquery', 'bootstrap'
+];
+
 const config = {
-    entry: './src/index.js',
+    entry: {
+        bundle: './src/index.js',
+        vendor: VENDOR_LIBS,
+    },
     output:{
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'build'),
+        filename: '[name].js',
     },
     module: {
         rules:[
@@ -20,7 +27,24 @@ const config = {
                     fallback: "style-loader",
                     use: "css-loader"
                 })
-            }
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            limit: 4000
+                        }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true,
+                        },
+                    },
+                ],
+              }
         ]
     },
     plugins: [
