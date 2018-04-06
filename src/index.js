@@ -1,7 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.js';
-import small from '../assets/medium.jpg';
+import 'bootstrap/dist/js/bootstrap.bundle';
 import 'jquery';
+import small from '../assets/medium.jpg';
+
 document.body.innerHTML = 'Hola Mundo';
 
 const myButton = document.createElement('button');
@@ -28,4 +29,5 @@ dropDownCont.innerHTML = `<div class="dropdown">
 
 document.body.appendChild(myButton);
 document.body.appendChild(theImage);
-document.body.appendChild(dropDownCont)
+document.body.appendChild(dropDownCont);
+
